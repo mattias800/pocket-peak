@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#c8e7db" />
+    <meta
+      name="description"
+      content="One tiny island. One big little adventure. Jump, explore, and collect the summit star in Pocket Peak, a free 3D platformer."
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>Pocket Peak — A little 3D adventure</title>
+  </head>
+  <body>
+    <canvas id="game" aria-label="Pocket Peak 3D game world"></canvas>
+    <div id="app">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Pocket Peak home"
+          ><span class="brand-mark">✦</span> POCKET PEAK</a
+        >
+        <span class="edition">A LITTLE 3D ADVENTURE</span>
+        <div class="top-actions">
+          <button id="sound" class="icon-button" aria-label="Unmute sound" title="Sound · M">
+            ♪<span class="sound-slash"></span>
+          </button>
+          <button id="pause" class="icon-button" aria-label="Pause game" title="Pause · Esc" hidden>
+            Ⅱ
+          </button>
+        </div>
+      </header>
+      <section id="intro" class="intro">
+        <div class="eyebrow"><span></span> SMALL WORLD. BIG LITTLE ADVENTURE.</div>
+        <h1>Pocket<br /><span>Peak.</span><i>✦</i></h1>
+        <p class="intro-copy">
+          A whole adventure.<br />
+          An itty-bitty island.
+        </p>
+        <p class="intro-detail">
+          Meet Pip. Hop between grassy ledges, outsmart the grumblings, and put a little starlight
+          back in the sky.
+        </p>
+        <button id="start" class="primary-button">Let’s play <span>↗</span></button>
+        <div class="start-hint"><kbd>W A S D</kbd> move <span>·</span> <kbd>SPACE</kbd> jump</div>
+      </section>
+      <div id="intro-footer" class="intro-footer">
+        <span><i class="tiny-dot"></i> ONE ISLAND. NO LOADING SCREENS.</span
+        ><span>Made for the joy of jumping.</span>
+      </div>
+      <div id="world-label" class="world-label">
+        <span class="label-line"></span>
+        <div>THE WHOLE WIDE WORLD<small>Fits right in your pocket.</small></div>
+      </div>
+      <section id="hud" class="hud" hidden>
+        <div class="mission">
+          <span class="eyebrow">YOUR LITTLE ADVENTURE</span
+          ><strong id="objective">Find the 3 star fragments</strong>
+          <div id="fragment-icons" class="fragments">
+            <span>✦</span><span>✦</span><span>✦</span>
+          </div>
+          <small id="mission-hint">Follow the gold coins. Go a little higher.</small>
+        </div>
+        <div class="score">
+          <div class="coin-score">
+            <span class="coin-icon">●</span> <b id="coins">0</b><small>/ 15</small>
+          </div>
+          <div id="hearts" class="hearts" aria-label="3 hearts">♥ ♥ ♥</div>
+          <div id="timer" class="timer">0:00</div>
+        </div>
+        <div class="bottom-bar">
+          <span><kbd>WASD / ↑↓←→</kbd> Move <kbd>SPACE</kbd> Jump ×2 <kbd>SHIFT</kbd> Run</span
+          ><span><kbd>Q E</kbd> Orbit <kbd>R</kbd> Rescue <kbd>ESC</kbd> Pause</span>
+        </div>
+        <div id="touch-controls" class="touch-controls">
+          <div id="joystick" class="joystick" aria-label="Movement joystick">
+            <div id="stick"></div>
+          </div>
+          <button id="touch-jump" aria-label="Jump">JUMP<small>×2</small></button>
+        </div>
+      </section>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+      <section id="pause-screen" class="modal-screen" hidden>
+        <div class="modal-card">
+          <span class="eyebrow">TAKE A LITTLE BREATHER</span>
+          <h2>Peak pause.</h2>
+          <p>Your adventure will be right here.</p>
+          <button id="resume" class="primary-button">Keep exploring <span>↗</span></button
+          ><button id="restart" class="text-button">Start a fresh adventure</button>
+          <p class="control-note">
+            Drag to orbit · Scroll to zoom<br />Controller: left stick, A to jump, X to run
+          </p>
+        </div>
+      </section>
+      <section id="win-screen" class="modal-screen" hidden>
+        <div class="modal-card win-card">
+          <div class="win-star">✦</div>
+          <span class="eyebrow">LITTLE WORLD. BIG HEART.</span>
+          <h2>A pocketful<br />of starlight.</h2>
+          <p>You brought the summit star home.<br />Look at you, little adventurer.</p>
+          <div class="win-stats">
+            <div><b id="win-coins">0 / 15</b><span>COINS FOUND</span></div>
+            <div><b id="win-time">0:00</b><span>YOUR TIME</span></div>
+          </div>
+          <p id="best-time" class="best-time"></p>
+          <button id="play-again" class="primary-button">One more adventure <span>↻</span></button
+          ><button id="explore" class="text-button">Stay a little longer</button>
+        </div>
+      </section>
+      <section id="error-screen" class="modal-screen" hidden>
+        <div class="modal-card">
+          <h2>A little hiccup.</h2>
+          <p id="error-message">
+            This game needs a browser with WebGL 2 support. Try a recent Chrome, Edge, Firefox, or
+            Safari with hardware acceleration enabled.
+          </p>
+          <button class="primary-button" onclick="location.reload()">Try again ↻</button>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
