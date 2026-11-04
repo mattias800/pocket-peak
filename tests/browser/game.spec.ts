@@ -62,8 +62,10 @@ async function navigate(page: Page, x: number, z: number, jump = false): Promise
       lastJump = elapsed;
     }
     if (jump && elapsed > 800) await page.keyboard.up('Space');
-    await page.clock.runFor(64);
-    elapsed += 64;
+    // One rendered frame per control sample; the fixed-step controller still
+    // integrates every physics step. This also keeps software-rendered CI fast.
+    await page.clock.fastForward(50);
+    elapsed += 50;
   }
   for (const key of held) await page.keyboard.up(key);
   await page.keyboard.up('Space');
@@ -145,15 +147,16 @@ test('can collect all three fragments and win using normal controls', async ({ p
   expect(reset.health).toBe(3);
 });
 
-test('touch controls work on a phone-sized screen', async ({ browser }) => {
+test('touch controls work on a phone-sized screen', async ({ browser, baseURL }) => {
   const context = await browser.newContext({
     viewport: { width: 390, height: 844 },
     isMobile: true,
     hasTouch: true,
+    baseURL,
   });
   const page = await context.newPage();
   await installClock(page);
-  await page.goto('http://127.0.0.1:4186/');
+  await page.goto('/');
   await page.clock.runFor(32);
   await page.screenshot({ path: 'test-results/title-mobile.png' });
   await page.locator('#start').tap();
